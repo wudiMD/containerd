@@ -133,7 +133,7 @@ func (t *Task) Start(ctx context.Context) error {
 		t.cg = cg
 		t.mu.Unlock()
 	}
-	fmt.Prinf("The container is started !!!!!!!!!!!")
+	fmt.Printf("The container is started !!!!!!!!!!!")
 	t.events.Publish(ctx, runtime.TaskStartEventTopic, &eventstypes.TaskStart{
 		ContainerID: t.id,
 		Pid:         uint32(t.pid),
