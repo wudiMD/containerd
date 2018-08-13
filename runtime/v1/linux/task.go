@@ -21,7 +21,7 @@ package linux
 import (
 	"context"
 	"sync"
-
+	"fmt"
 	"github.com/containerd/cgroups"
 	eventstypes "github.com/containerd/containerd/api/events"
 	"github.com/containerd/containerd/api/types/task"
@@ -63,6 +63,7 @@ func newTask(id, namespace string, pid int, shim *client.Client, events *exchang
 			return nil, err
 		}
 	}
+	fmt.Printf("The container is started !!!!!!!!!!")
 	return &Task{
 		id:        id,
 		pid:       pid,
@@ -132,6 +133,7 @@ func (t *Task) Start(ctx context.Context) error {
 		t.cg = cg
 		t.mu.Unlock()
 	}
+	fmt.Prinf("The container is started !!!!!!!!!!!")
 	t.events.Publish(ctx, runtime.TaskStartEventTopic, &eventstypes.TaskStart{
 		ContainerID: t.id,
 		Pid:         uint32(t.pid),
