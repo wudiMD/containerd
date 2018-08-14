@@ -23,6 +23,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/containerd/cgroups"
 	"github.com/containerd/containerd/api/services/tasks/v1"
 	"github.com/containerd/containerd/api/types"
 	"github.com/containerd/containerd/cio"
@@ -252,7 +253,8 @@ func (c *container) NewTask(ctx context.Context, ioCreate cio.Creator, opts ...N
 		return nil, errdefs.FromGRPC(err)
 	}
 	t.pid = response.Pid
-	return t, nil
+	_,err:=cgroups.V1()
+	return t, err
 }
 
 func (c *container) Update(ctx context.Context, opts ...UpdateContainerOpts) error {
