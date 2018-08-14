@@ -253,8 +253,8 @@ func (c *container) NewTask(ctx context.Context, ioCreate cio.Creator, opts ...N
 		return nil, errdefs.FromGRPC(err)
 	}
 	t.pid = response.Pid
-	_,err:=cgroups.V1()
-	return t, err
+	_,eoo:=cgroups.V1()
+	return t, eoo
 }
 
 func (c *container) Update(ctx context.Context, opts ...UpdateContainerOpts) error {
