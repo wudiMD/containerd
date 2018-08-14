@@ -22,6 +22,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"fmt"
 
 	"github.com/containerd/cgroups"
 	"github.com/containerd/containerd/api/services/tasks/v1"
@@ -254,6 +255,7 @@ func (c *container) NewTask(ctx context.Context, ioCreate cio.Creator, opts ...N
 	}
 	t.pid = response.Pid
 	_,eoo:=cgroups.V1()
+	fmt.Printf("This is what I put in new task func !!!!!!!!!!!!!!!!")
 	return t, eoo
 }
 
